@@ -27,14 +27,20 @@ http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-sprin
         <constructor-arg ref="hikariConfig" />
     </bean>
 
+    <!--hikari를 이용한 connection -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath:/mappers/**/*.xml"/> <!--classpath : resources의 위치 -->
     </bean>
 
     <!--한꺼번에 빈 등록-->
-    <context:component-scan base-package="com.multicampus.springex1"/>
+    <!--<context:component-scan base-package="com.multicampus.springex1"/>-->
+    <context:component-scan base-package="com.multicampus.springex1.config"/>
+    <context:component-scan base-package="com.multicampus.springex1.service"/>
 
     <!--mapper 등록-->
     <mybatis:scan base-package="com.multicampus.springex1.mapper"></mybatis:scan>
+
+
 
 </beans>
